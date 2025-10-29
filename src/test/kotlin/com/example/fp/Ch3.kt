@@ -6,7 +6,7 @@ import java.math.BigDecimal
 import kotlin.math.sqrt
 
 class Ch3 : StringSpec({
-    "Ex 3.2 Power function in Simple Recursion" {
+    "Ex 3-2 Power function in Simple Recursion" {
         fun power(x: Double, n: Int): Double {
             return if (n <= 1) x
             else x * power(x, n - 1)
@@ -17,7 +17,7 @@ class Ch3 : StringSpec({
 
 
 
-    "Ex 3.3 Factorial function in Simple Recursion" {
+    "Ex 3-3 Factorial function in Simple Recursion" {
         fun factorial(n: Int): Double {
             return if (n <= 1) 1.0
             else n * factorial(n - 1)
@@ -49,7 +49,7 @@ class Ch3 : StringSpec({
         reverse("abcd") shouldBe "dcba"
     }
 
-    "Ex 3.4 Binary Function in simple recursion" {
+    "Ex 3-4 Binary Function in simple recursion" {
         fun toBinary(n: Int): String = when {
             n <= 1 -> "$n"
             else -> toBinary(n / 2) + "${n % 2}"
@@ -58,7 +58,7 @@ class Ch3 : StringSpec({
         toBinary(10) shouldBe "1010"
     }
 
-    "Ex 3.5 replicate function in simple recursion" {
+    "Ex 3-5 replicate function in simple recursion" {
         fun replicate(n: Int, element: Int): List<Int> = when {
             n <= 0 -> emptyList()
             else -> listOf(element) + replicate(n - 1, element)
@@ -77,7 +77,7 @@ class Ch3 : StringSpec({
         take(2, listOf(1, 2, 3)) shouldBe listOf(1, 2)
     }
 
-    "Ex 3.6 elem function in simple recursion" {
+    "Ex 3-6 elem function in simple recursion" {
         fun elem(num: Int, list: List<Int>): Boolean = when {
             list.isEmpty() -> false
             else -> list.head() == num || elem(num, list.tail())
@@ -86,7 +86,7 @@ class Ch3 : StringSpec({
         elem(1, listOf(1, 2, 3)) shouldBe true
     }
 
-    "Ex 3.7 take Sequence function in simple recursion" {
+    "Ex 3-7 take Sequence function in simple recursion" {
         fun repeat(n: Int): Sequence<Int> = sequenceOf(n) + { repeat(n) }
 
         fun takeSequence(n: Int, sequence: Sequence<Int>): List<Int> = when {
@@ -106,7 +106,7 @@ class Ch3 : StringSpec({
         zip(listOf(1, 2, 3), listOf(4, 5, 6)) shouldBe listOf(Pair(1, 4), Pair(2, 5), Pair(3, 6))
     }
 
-    "Ex 3.8 Quick Sort function in simple recursion" {
+    "Ex 3-8 Quick Sort function in simple recursion" {
         fun quickSort(arr: IntArray, low: Int = 0, high: Int = arr.size - 1) {
 
             fun partition(arr: IntArray, low: Int, high: Int): Int {
@@ -142,12 +142,10 @@ class Ch3 : StringSpec({
         intArray shouldBe intArrayOf(1, 2, 3, 4, 5, 6, 8, 9)
     }
 
-    "Ex 3.9 GCD function in simple recursion" {
-        fun gcd(a: Int, b: Int): Int = when {
-            a == 0 -> b
-            b == 0 -> a
-            a > b -> gcd(a % b, b)
-            else -> gcd(a, b % a)
+    "Ex 3-9 GCD function in simple recursion" {
+        fun gcd(a: Int, b: Int): Int = when(b) {
+            0 -> a
+            else -> gcd(b, a % b)
         }
 
         gcd(12, 8) shouldBe 4
@@ -179,7 +177,7 @@ class Ch3 : StringSpec({
         fiboMemoization(10) shouldBe 55
     }
 
-    "Ex 3.10 Factorial function with memoization" {
+    "Ex 3-10 Factorial function with memoization" {
         var memo2 = DoubleArray(100) { -1.0 }
 
         fun factiorial(n: Int): Double = when {
@@ -204,7 +202,7 @@ class Ch3 : StringSpec({
         fiboFP(10) shouldBe 55
     }
 
-    "Ex 3.11 Factorial Function with Tail Recursion" {
+    "Ex 3-11 Factorial Function with Tail Recursion" {
         tailrec fun factorialFP(n: Int, acc: Double = 1.0): Double = when (n) {
             1 -> acc
             else -> factorialFP(n - 1, n * acc)
@@ -213,7 +211,7 @@ class Ch3 : StringSpec({
         factorialFP(10) shouldBe 3628800.0
     }
 
-    "Ex 3.13 Power Function with Tail Recursion" {
+    "Ex 3-13 Power Function with Tail Recursion" {
         tailrec fun powerFP(x: Double, n: Int, acc: Double = 1.0): Double = when (n) {
             0 -> acc
             else -> powerFP(x, n - 1, x * acc)
@@ -245,7 +243,7 @@ class Ch3 : StringSpec({
         reverseFP("abcd") shouldBe "dcba"
     }
 
-    "Ex 3.14 Binary Function with Tail Recursion" {
+    "Ex 3-14 Binary Function with Tail Recursion" {
         fun toBinary(n: Int): String = when {
             n <= 1 -> "$n"
             else -> toBinary(n / 2) + "${n % 2}"
@@ -259,7 +257,7 @@ class Ch3 : StringSpec({
         toBinaryFP(10) shouldBe "1010"
     }
 
-    "Ex 3.15 Replicate Function with Tail Recursion" {
+    "Ex 3-15 Replicate Function with Tail Recursion" {
         fun replicateFP(n: Int, element: Int, acc: List<Int> = emptyList()): List<Int> = when {
             n <= 0 -> acc
             else -> replicateFP(n - 1, element, acc + element)
@@ -280,7 +278,7 @@ class Ch3 : StringSpec({
         take(2, listOf(1, 2, 3)) shouldBe listOf(1, 2)
     }
 
-    "Ex 3.16 elem function with tail Recursion" {
+    "Ex 3-16 elem function with tail Recursion" {
         fun elem(num: Int, list: List<Int>): Boolean = when {
             list.isEmpty() -> false
             else -> list.head() == num || elem(num, list.tail())
@@ -304,7 +302,7 @@ class Ch3 : StringSpec({
         zip(listOf(1, 2, 3), listOf(4, 5, 6)) shouldBe listOf(Pair(1, 4), Pair(2, 5), Pair(3, 6))
     }
 
-    "Ex 3.17 returns sqrt(n)/2^k at the first k such that sqrt(n)/2^k < 1" {
+    "Ex 3-17 returns sqrt(n)/2^k at the first k such that sqrt(n)/2^k < 1" {
         fun sqrtAndDivideBy2(n: Double): Double {
             fun divideBy2(n: Double): Double {
                 val divided = n / 2
@@ -322,7 +320,7 @@ class Ch3 : StringSpec({
         trampoline(EvenOrOdd.isEven(9999)) shouldBe false
     }
 
-    "Ex 3.18 trampoline with 3.17" {
+    "Ex 3-18 trampoline with 3.17" {
         fun sqrtAndDivideBy2(n: Double): Bounce<Double> {
             fun dividedBy2(n: Double): Bounce<Double> {
                 val dividedBy2 = n / 2
@@ -338,7 +336,7 @@ class Ch3 : StringSpec({
         trampoline(sqrtAndDivideBy2(8.0)) shouldBe (sqrt(2.0)/2)
     }
 
-    "Ex 3.19 trampoline with factorial" {
+    "Ex 3-19 trampoline with factorial" {
         fun factorial(n: BigDecimal): BigDecimal {
             fun factorial(n: BigDecimal, first: BigDecimal, second: BigDecimal): Bounce<BigDecimal> = when (n) {
                 BigDecimal.ZERO -> Done(first)
