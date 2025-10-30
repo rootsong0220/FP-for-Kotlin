@@ -77,3 +77,6 @@ tailrec fun <P1, P2, R> zipWith(func: (P1, P2) -> R, list1: List<P1>, list2: Lis
     list1.isEmpty() || list2.isEmpty() -> acc
     else -> zipWith(func, list1.tail(), list2.tail(), acc + listOf(func(list1.head(), list2.head())))
 }
+
+// Functor
+fun <T> identity(x: T) = x
