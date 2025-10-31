@@ -1,7 +1,7 @@
 package com.example.fp
 
 import com.example.fp.functor.*
-import com.example.fp.functor.FunList.Nil.funListOf
+import com.example.fp.functor.FunList.Companion.funListOf
 import com.example.fp.functor.Nothing
 import com.example.fp.functor.Tree.EmptyTree
 import com.example.fp.functor.Tree.EmptyTree.treeOf
@@ -164,7 +164,7 @@ class Ch7 : StringSpec({
         // 다시말해 상태 변경과 같은 부수효과가 없어야함
     }
 
-    "Fuctor with currying" {
+    "Functor with currying" {
         val product: (Int, Int) -> Int = { x: Int, y: Int -> x * y}
         val curriedProduct = product.curried()
         val maybeProductTen: Maybe<(Int) -> Int> = Just(10).fmap(curriedProduct)
