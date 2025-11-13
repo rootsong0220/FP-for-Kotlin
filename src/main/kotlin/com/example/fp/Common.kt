@@ -1,5 +1,7 @@
 package com.example.fp
 
+import com.example.fp.monoid.Monoid
+
 fun String.head() = first()
 fun String.tail() = drop(1)
 
@@ -80,3 +82,6 @@ tailrec fun <P1, P2, R> zipWith(func: (P1, P2) -> R, list1: List<P1>, list2: Lis
 
 // Functor
 fun <T> identity(x: T) = x
+
+// Monoid
+fun <T> Monoid<T>.mconcat(list: FunList<T>): T = list.foldRight(mempty(), ::mappend)
